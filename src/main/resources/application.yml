@@ -13,9 +13,19 @@ binance:
   api:
     getPrice: https://api.binance.com/api/v3/avgPrice?symbol=BTCUSDT
 
-db:
-  driver:
-    name: org.postgresql.Driver
-  url: jdbc:postgresql://localhost:5432/db
-  user: root
-  password: root
+
+spring:
+  jpa:
+    generate-ddl: true
+  datasource:
+    url: jdbc:postgresql://localhost:5432/crypto_bot_db
+    username: postgres
+    password: postgres
+    hikari:
+      schema: crypto_bot_schema
+      connection-ini-sql: CREATE SCHEMA IF NOT EXISTS crypto_bot_schema
+      connection-timeout: 10000
+app:
+  interval:
+    refresh-price: 120000
+    notification: 600000

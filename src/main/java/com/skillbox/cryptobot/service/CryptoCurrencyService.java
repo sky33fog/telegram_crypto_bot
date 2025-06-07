@@ -23,4 +23,14 @@ public class CryptoCurrencyService {
         }
         return price.get();
     }
+
+    public double refreshPrice() {
+        try {
+            price.set(client.getBitcoinPrice());
+        } catch (IOException ex) {
+            log.error("Ошибка возникла при запросе стоимости биткоина", ex);
+        }
+        return price.get();
+    }
+
 }
